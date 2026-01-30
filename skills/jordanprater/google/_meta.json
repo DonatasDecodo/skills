@@ -1,0 +1,11 @@
+{
+  "owner": "jordanprater",
+  "slug": "google",
+  "displayName": "Google Search",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1769804705010,
+    "commit": null
+  },
+  "history": []
+}
