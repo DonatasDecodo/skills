@@ -1,7 +1,7 @@
 ---
 name: tinman
-version: 0.1.0
-description: Proactive AI failure-mode research - discovers prompt injection, tool misuse, context bleed, and proposes mitigations
+version: 0.3.0
+description: AI security scanner - discovers prompt injection, tool exfil, context bleed with 80+ attack probes and real-time monitoring
 author: oliveskin
 repository: https://github.com/oliveskin/openclaw-skill-tinman
 license: Apache-2.0
@@ -13,7 +13,9 @@ requires:
   env: []
 
 install:
-  pip: tinman>=0.1.60
+  pip:
+    - AgentTinman>=0.1.60
+    - tinman-openclaw-eval>=0.1.2
 
 permissions:
   tools:
@@ -65,23 +67,51 @@ Display the latest findings report.
 
 ### `/tinman watch`
 
-Continuous monitoring mode (runs in background).
+Continuous monitoring mode with two options:
 
+**Real-time mode (recommended):** Connects to Gateway WebSocket for instant event monitoring.
 ```
-/tinman watch                   # Default: hourly scans
-/tinman watch --interval 30m    # Every 30 minutes
-/tinman watch stop              # Stop monitoring
+/tinman watch                           # Real-time via ws://127.0.0.1:18789
+/tinman watch --gateway ws://host:port  # Custom gateway URL
+/tinman watch --interval 5              # Analysis every 5 minutes
+```
+
+**Polling mode:** Periodic session scans (fallback when gateway unavailable).
+```
+/tinman watch --mode polling            # Hourly scans
+/tinman watch --mode polling --interval 30  # Every 30 minutes
+```
+
+**Heartbeat Integration:** For scheduled scans, configure in heartbeat:
+```yaml
+# In gateway heartbeat config
+heartbeat:
+  jobs:
+    - name: tinman-security-scan
+      schedule: "0 * * * *"  # Every hour
+      command: /tinman scan --hours 1
 ```
 
 ### `/tinman sweep`
 
-Run targeted security sweep with synthetic probes.
+Run proactive security sweep with 80+ synthetic attack probes.
 
 ```
-/tinman sweep                   # Full security sweep
-/tinman sweep --category prompt_injection
-/tinman sweep --category tool_exfil
+/tinman sweep                              # Full sweep, S2+ severity
+/tinman sweep --severity S3                # High severity only
+/tinman sweep --category prompt_injection  # Jailbreaks, DAN, etc.
+/tinman sweep --category tool_exfil        # SSH keys, credentials
+/tinman sweep --category context_bleed     # Cross-session leaks
+/tinman sweep --category privilege_escalation
 ```
+
+**Attack Categories:**
+- `prompt_injection` (15 attacks): Jailbreaks, DAN, instruction override
+- `tool_exfil` (18 attacks): SSH keys, credentials, network exfil
+- `context_bleed` (14 attacks): Cross-session leaks, memory extraction
+- `privilege_escalation` (15 attacks): Sandbox escape, elevation bypass
+
+**Output:** Writes sweep report to `~/.openclaw/workspace/tinman-sweep.md`
 
 ## Failure Categories
 
