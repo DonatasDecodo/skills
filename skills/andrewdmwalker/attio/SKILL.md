@@ -1,11 +1,11 @@
 ---
-name: attio-generic-enhanced
-description: Enhanced Attio CRM integration with batch operations, improved error handling, data validation, enrichment functions, and robust task management. Use when working with large volumes of CRM data, requiring advanced error handling, or needing comprehensive data validation.
+name: attio
+description: Attio CRM integration for managing companies, people, deals, notes, tasks, and custom objects. Use when working with Attio CRM data, searching contacts, managing sales pipelines, adding notes to records, creating tasks, or syncing prospect information.
 ---
 
-# Enhanced Attio CRM - Generic Version
+# Attio CRM
 
-Advanced Attio CRM integration with enhanced functionality for general-purpose CRM operations.
+Manage Attio CRM via REST API. Supports companies, people, deals, lists (pipelines), notes, and tasks.
 
 ## Setup
 
@@ -16,106 +16,72 @@ echo "ATTIO_API_KEY=your_api_key" >> ~/.env
 
 Get your API key: Attio → Workspace Settings → Developers → New Access Token
 
-## Enhanced Features
+## Quick Reference
 
-### 1. Batch Operations for Bulk Imports
+### Objects (Records)
 
 ```bash
-# Import large volumes of records efficiently
-attio-enhanced batch import companies data.json
-
-# Process records in configurable chunks
-attio-enhanced batch import people data.json --chunk-size 50
-
-# Track progress during bulk operations
-attio-enhanced batch import deals data.json --progress
+# List/search records
+attio objects list                     # List available objects
+attio records list <object>            # List records (companies, people, deals, etc.)
+attio records search <object> <query>  # Search by text
+attio records get <object> <id>        # Get single record
+attio records create <object> <json>   # Create record
+attio records update <object> <id> <json>  # Update record
 ```
 
-### 2. Enhanced Error Handling with Retry Logic
+### Lists (Pipelines)
 
 ```bash
-# Automatic retry on rate limits with exponential backoff
-attio-enhanced records create company data.json
-
-# Handle connection failures gracefully
-attio-enhanced records update person id data.json
-
-# Comprehensive error reporting
-attio-enhanced batch validate data.json
+attio lists list                       # Show all pipelines/lists
+attio entries list <list_slug>         # List entries in a pipeline
+attio entries add <list_slug> <object> <record_id>  # Add record to pipeline
 ```
 
-### 3. Data Validation for CRM Scenarios
+### Notes
 
 ```bash
-# Validate data before import
-attio-enhanced validate records data.json
-
-# Check required fields and data types
-attio-enhanced validate required-fields companies.json
-
-# Custom validation rules
-attio-enhanced validate custom-rules people.json
+attio notes list <object> <record_id>  # Notes on a record
+attio notes create <object> <record_id> <title> <content>
 ```
 
-### 4. General-Purpose Enrichment Functions
+### Tasks
 
 ```bash
-# Enrich contact data from external sources
-attio-enhanced enrich contact person_id
-
-# Augment company information
-attio-enhanced enrich company company_id
-
-# Lookup social media profiles
-attio-enhanced enrich social company_domain
-```
-
-### 5. Robust Task Management
-
-```bash
-# Create and track long-running tasks
-attio-enhanced tasks create "Process 1000 records" --script process_large_batch.sh
-
-# Monitor task status
-attio-enhanced tasks status task_id
-
-# Retrieve task results
-attio-enhanced tasks results task_id
+attio tasks list                       # All tasks
+attio tasks create <content> [deadline]  # Create task (deadline: YYYY-MM-DD)
+attio tasks complete <task_id>         # Mark complete
 ```
 
 ## Examples
 
-### Bulk Import with Error Handling
+### Find a company and add a note
 ```bash
-# Import 1000 companies with automatic retry and error isolation
-attio-enhanced batch import companies large_dataset.json --chunk-size 50 --retry-attempts 3
+# Search for company
+attio records search companies "Acme"
+
+# Add note to the company (using record_id from search)
+attio notes create companies abc123-uuid "Call Notes" "Discussed Q1 roadmap..."
 ```
 
-### Data Validation Before Import
+### Work with pipeline
 ```bash
-# Validate your data before import to prevent errors
-attio-enhanced validate records prospect_data.json
-attio-enhanced batch import people prospect_data.json
+# List pipeline stages
+attio entries list sales_pipeline
+
+# Add a company to pipeline
+attio entries add sales_pipeline companies abc123-uuid
 ```
 
-### Contact Enrichment
+### Create a follow-up task
 ```bash
-# Enrich existing contacts with additional information
-attio-enhanced enrich contact person_record_id
+attio tasks create "Follow up with John at Acme" "2024-02-15"
 ```
 
-## Performance Improvements
+## API Limits
 
-- Async/await support for concurrent operations
-- Connection pooling with session reuse
-- Efficient memory usage during batch processing
-- Optimized API calls with proper resource management
-
-## Security Features
-
-- Secure environment variable handling for credentials
-- API key protection in headers only
-- No hardcoded credentials in code
+- Rate limit: ~100 requests/minute
+- Pagination: Use `limit` and `offset` params for large datasets
 
 ## Full API Docs
 
