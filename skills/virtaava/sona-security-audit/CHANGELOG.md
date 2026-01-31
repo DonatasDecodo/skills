@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.1.1
+- Documentation: run scripts via `bash scripts/...` so installs still work if zip downloads do not preserve executable bits.
+
 ## 0.1.0
 - Initial public release.
 - Fail-closed JSON audit runner combining:

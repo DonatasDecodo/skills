@@ -3,9 +3,15 @@
   "slug": "sona-security-audit",
   "displayName": "Security Audit (Sona)",
   "latest": {
-    "version": "0.1.0",
-    "publishedAt": 1769872613729,
-    "commit": "https://github.com/clawdbot/skills/commit/7381ce5a49b8b2355daed059986d3d60e7118274"
+    "version": "0.1.1",
+    "publishedAt": 1769873037265,
+    "commit": null
   },
-  "history": []
+  "history": [
+    {
+      "version": "0.1.0",
+      "publishedAt": 1769872613729,
+      "commit": "https://github.com/clawdbot/skills/commit/7381ce5a49b8b2355daed059986d3d60e7118274"
+    }
+  ]
 }

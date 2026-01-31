@@ -23,16 +23,16 @@ If any layer fails, the overall audit is **FAIL**.
 
 ## Run an audit (JSON)
 
-From this skill folder:
+From this skill folder (use `bash` so it works even if executable bits were not preserved by a zip download):
 
 ```bash
-./scripts/run_audit_json.sh <path>
+bash scripts/run_audit_json.sh <path>
 ```
 
 Example:
 
 ```bash
-./scripts/run_audit_json.sh . > /tmp/audit.json
+bash scripts/run_audit_json.sh . > /tmp/audit.json
 jq '.ok, .tools' /tmp/audit.json
 ```
 
@@ -41,9 +41,9 @@ jq '.ok, .tools' /tmp/audit.json
 Set the strictness level (default: `standard`):
 
 ```bash
-OPENCLAW_AUDIT_LEVEL=standard ./scripts/run_audit_json.sh <path>
-OPENCLAW_AUDIT_LEVEL=strict   ./scripts/run_audit_json.sh <path>
-OPENCLAW_AUDIT_LEVEL=paranoid ./scripts/run_audit_json.sh <path>
+OPENCLAW_AUDIT_LEVEL=standard bash scripts/run_audit_json.sh <path>
+OPENCLAW_AUDIT_LEVEL=strict   bash scripts/run_audit_json.sh <path>
+OPENCLAW_AUDIT_LEVEL=paranoid bash scripts/run_audit_json.sh <path>
 ```
 
 - `standard`: pragmatic strict defaults (lockfiles required; install hooks/persistence/prompt-injection signals fail)

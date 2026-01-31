@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "name": "security-audit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "intent": "Hostile, fail-closed auditing of codebases and skills for secrets, prompt-injection signals, persistence mechanisms, and supply-chain hygiene.",
   "permissions": {
     "network": { "required": false, "domains": [] },
