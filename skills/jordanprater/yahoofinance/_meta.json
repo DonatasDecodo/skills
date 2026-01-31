@@ -1,0 +1,11 @@
+{
+  "owner": "jordanprater",
+  "slug": "yahoofinance",
+  "displayName": "Yahoo Finance",
+  "latest": {
+    "version": "1.0.1",
+    "publishedAt": 1769874535105,
+    "commit": null
+  },
+  "history": []
+}
