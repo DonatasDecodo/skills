@@ -42,5 +42,5 @@ Once documentation is accessible, verify:
 
 ## Skill-Specific Recommendations (Based on Current Repo)
 - Keep the **Charter Lite** as the default intake and only expand to full charter when risk increases.
-- Continue using a single `LOG_CACHES.md` as the verbose source of truth and reference it from memory.
+- Use separated log files (`LOG_PROJECTS.md`, `LOG_CHARTERS.md`, `LOG_CONFLICTS.md`, `LOG_DECISIONS.md`, `LOG_ACTIVITY.md`) as the verbose source of truth and reference them from memory.
 - Use the minimal intake template to reduce user friction while still preserving governance gates.

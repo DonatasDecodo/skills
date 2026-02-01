@@ -28,8 +28,8 @@ Provide the governing “OS” for all OpenClaw project work: enforce Project ID
 - Decisions and actions are logged with traceability.
 
 ### Change Control & Override Policy
-- Changes to this Master Project require a written record in `LOG_CACHES.md` under **Decisions**.
-- Any override of rules (reject/critical exceptions) must be documented as an **Override Record** in `LOG_CACHES.md` under **Conflicts** and referenced in **Decisions**.
+- Changes to this Master Project require a written record in `LOG_DECISIONS.md`.
+- Any override of rules (reject/critical exceptions) must be documented as an **Override Record** in `LOG_CONFLICTS.md` and referenced in `LOG_DECISIONS.md`.
 - Overrides are temporary and must include resolution criteria and an expiration or review trigger.
 
 ---
@@ -85,15 +85,18 @@ This workflow applies to **every request**. It is a gate-based system; if any ga
 1. **Intake**
    - Capture the request, desired outcome, and any constraints.
    - Infer missing fields from prior conversation context when evidence is clear.
+   - **Clarify any inferred fields you are not confident in** before committing them or creating a project.
 2. **ID Gate**
-   - Ask the master whether this should become a project with a specialized sub-agent.
-   - If yes: auto-create a Project ID and start a **Charter Lite**.
+   - Ask the master whether this should become a project (**ask even for small tasks**), using two questions:
+     - “Should I make and log this into a project to store it in my memory?”
+     - “Should I execute this now, or spin up a specialized agent for higher-quality work (this will use more tokens)?”
+   - If yes: confirm any uncertain fields, auto-create a Project ID, and start a **Charter Lite** in `LOG_CHARTERS.md`.
    - If no: proceed as **non-project work** and log the categorization.
 3. **Charter Gate**
-   - Confirm a **Charter Lite** exists in `LOG_CACHES.md` under **Charters**.
+   - Confirm a **Charter Lite** exists in `LOG_CHARTERS.md`.
    - If missing: block and log conflict.
 4. **Conflict Gate**
-   - Run the Conflict Detection Checklist from `LOG_CACHES.md` under **Conflicts**.
+   - Run the Conflict Detection Checklist from `LOG_CONFLICTS.md`.
    - If conflict detected: log and route as required.
 5. **Plan**
    - Draft steps that respect scope, guardrails, and dependencies.
@@ -102,15 +105,16 @@ This workflow applies to **every request**. It is a gate-based system; if any ga
 7. **Verify**
    - Validate against success criteria and verification plan.
 8. **Log**
-   - Record actions and outcomes in `LOG_CACHES.md` under **Log**.
-   - Record decisions in `LOG_CACHES.md` under **Decisions**.
+   - Record actions and outcomes in `LOG_ACTIVITY.md`.
+   - Record decisions in `LOG_DECISIONS.md`.
+   - **Always log and sync memory, even for small tasks or early stops.**
 9. **Memory Sync**
    - Write concise references into `MEMORY.md` that point to the verbose logs.
 10. **Update Indexes**
-    - Update `LOG_CACHES.md` sections **Projects**, **Charters**, **Conflicts** as needed.
+    - Update `LOG_PROJECTS.md`, `LOG_CHARTERS.md`, `LOG_CONFLICTS.md` as needed.
 
 ### Gate Failure Rule
-If any gate returns **block**, **reject**, or **critical**, **stop**. Create a conflict record in `LOG_CACHES.md` under **Conflicts** and follow the routing rule below.
+If any gate returns **block**, **reject**, or **critical**, **stop**. Create a conflict record in `LOG_CONFLICTS.md` and follow the routing rule below. Always sync a memory reference to the conflict.
 
 ---
 

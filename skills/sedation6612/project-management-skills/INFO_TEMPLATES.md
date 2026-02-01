@@ -3,6 +3,7 @@
 ## New Project Intake (Minimum Required)
 - summary:
 - proposed_outcome:
+- uncertain_fields_to_clarify:
 
 Optional (infer if possible):
 - constraints:
@@ -10,7 +11,14 @@ Optional (infer if possible):
 - initial_risks:
 - specialized_sub_agent:
 
-## Charter Lite (Create in LOG_CACHES.md under Charters)
+## Project Creation Prompt (Split Questions)
+- ask: “Should I make and log this into a project to store it in my memory?”
+- ask: “Should I execute this now, or spin up a specialized agent for higher-quality work (this will use more tokens)?”
+
+## HEARTBEAT Conflict Check Prompt
+- ask: “How often should I check `LOG_CONFLICTS.md` for unresolved conflicts? (Default: daily; more frequent checks use more tokens.)”
+
+## Charter Lite (Create in LOG_CHARTERS.md)
 # <Project ID> — <Project Name>
 
 ## Objective
@@ -39,7 +47,7 @@ Optional (infer if possible):
 - updated_success_criteria:
 - approval_required:
 
-## Conflict Record (Place in LOG_CACHES.md Conflicts INBOX)
+## Conflict Record (Place in LOG_CONFLICTS.md INBOX)
 - timestamp:
 - project_id:
 - severity:

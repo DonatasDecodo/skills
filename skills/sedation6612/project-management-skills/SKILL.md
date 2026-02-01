@@ -15,16 +15,21 @@ Use this skill whenever:
 
 ## Quickstart Checklist
 1. Capture the request and **infer missing fields** from prior conversation context (only when evidence is clear).
-2. Ask the master if this should become a **project** with a specialized sub-agent presiding.
-3. If yes, auto-create a **Project ID** and start a **Charter Lite** in `LOG_CACHES.md` under **Charters**.
-4. Load caches: `LOG_CACHES.md`.
-5. Run the **Conflict Detection Checklist**.
-6. Proceed only if gates pass; otherwise log conflict and stop.
-7. Execute the governed workflow in `INFO_GOVERNANCE.md` under **Governed Workflow**.
-8. Log outcomes in `LOG_CACHES.md` under **Log**, decisions in **Decisions**.
-9. Update runtime workspace files per `INFO_RUNTIME.md`.
+2. **Clarify any inferred fields you are not confident in** before committing them or creating a project.
+3. Ask the master if this should become a **project** (break into two questions; ask even for small tasks):
+   - “Should I make and log this into a project to store it in my memory?”
+   - “Should I execute this now, or spin up a specialized agent for higher-quality work (this will use more tokens)?”
+4. If yes, auto-create a **Project ID** and start a **Charter Lite** in `LOG_CHARTERS.md`.
+5. Load only the necessary log files: `LOG_PROJECTS.md`, `LOG_CHARTERS.md`, `LOG_CONFLICTS.md`, `LOG_DECISIONS.md`, `LOG_ACTIVITY.md`.
+6. On setup and first call, ask how often to run **conflict checks** via HEARTBEAT (default **daily**); inform that more checks consume more tokens, then write the schedule into `~/.openclaw/workspace/HEARTBEAT.md`.
+7. Run the **Conflict Detection Checklist**.
+8. Proceed only if gates pass; otherwise log conflict and stop.
+9. Execute the governed workflow in `INFO_GOVERNANCE.md` under **Governed Workflow**.
+10. Log outcomes in `LOG_ACTIVITY.md`, decisions in `LOG_DECISIONS.md`.
+11. **Always sync logs and memory** (even for small tasks or early stops).
+12. Update runtime workspace files per `INFO_RUNTIME.md`.
 
-## The 9 Setup Commandments (Stop-Work Rules)
+## The 10 Setup Commandments (Stop-Work Rules)
 **C1 Lock project isolation:** every unit of work belongs to exactly one Project ID **or** is explicitly logged as non-project work.
 **C2 Master Project as OS/kernel governs all projects.**
 **C3 Charter first:** no charter, no work.
@@ -34,6 +39,7 @@ Use this skill whenever:
 **C7 Conflicts routed to messenger:** provide manual copy/paste payload.
 **C8 Severity defined up front:** info, warn, block, reject, critical.
 **C9 Kill fast-but-wrong:** if uncertain, add checks or record unknowns—never guess.
+**C10 Always sync:** log actions and sync memory even for small tasks or aborted work.
 
 ## Core References
 - Governance rules: [INFO_GOVERNANCE.md](INFO_GOVERNANCE.md)
