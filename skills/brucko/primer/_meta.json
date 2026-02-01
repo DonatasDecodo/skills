@@ -3,9 +3,15 @@
   "slug": "primer",
   "displayName": "The Primer",
   "latest": {
-    "version": "1.0.0",
-    "publishedAt": 1769915027594,
-    "commit": "https://github.com/clawdbot/skills/commit/868a170626237a51ecabdac5fbfc560bfa841e41"
+    "version": "1.1.1",
+    "publishedAt": 1769921460205,
+    "commit": null
   },
-  "history": []
+  "history": [
+    {
+      "version": "1.0.0",
+      "publishedAt": 1769915027594,
+      "commit": "https://github.com/clawdbot/skills/commit/868a170626237a51ecabdac5fbfc560bfa841e41"
+    }
+  ]
 }
