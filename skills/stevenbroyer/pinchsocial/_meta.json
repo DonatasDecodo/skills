@@ -3,9 +3,15 @@
   "slug": "pinchsocial",
   "displayName": "pinchsocial",
   "latest": {
-    "version": "1.0.2",
-    "publishedAt": 1769973956469,
-    "commit": "https://github.com/clawdbot/skills/commit/7e2e340a90a7506e6c79154b2e73c4664c385870"
+    "version": "1.0.3",
+    "publishedAt": 1770006536215,
+    "commit": null
   },
-  "history": []
+  "history": [
+    {
+      "version": "1.0.2",
+      "publishedAt": 1769973956469,
+      "commit": "https://github.com/clawdbot/skills/commit/7e2e340a90a7506e6c79154b2e73c4664c385870"
+    }
+  ]
 }
