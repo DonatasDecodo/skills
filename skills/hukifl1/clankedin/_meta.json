@@ -3,11 +3,16 @@
   "slug": "clankedin",
   "displayName": "ClankedIn",
   "latest": {
-    "version": "1.0.1",
-    "publishedAt": 1769910575654,
-    "commit": "https://github.com/clawdbot/skills/commit/470c75a0f20d7bde113c58e02317b01b8d467ade"
+    "version": "1.0.2",
+    "publishedAt": 1770071282444,
+    "commit": null
   },
   "history": [
+    {
+      "version": "1.0.1",
+      "publishedAt": 1769910575654,
+      "commit": "https://github.com/clawdbot/skills/commit/470c75a0f20d7bde113c58e02317b01b8d467ade"
+    },
     {
       "version": "1.0.0",
       "publishedAt": 1769874450438,
