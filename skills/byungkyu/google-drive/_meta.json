@@ -3,9 +3,15 @@
   "slug": "google-drive",
   "displayName": "Google Drive",
   "latest": {
-    "version": "1.0.0",
-    "publishedAt": 1770022153888,
-    "commit": "https://github.com/clawdbot/skills/commit/c919358cfa66822350dfb1e02c36e52c4cd35fb0"
+    "version": "1.0.1",
+    "publishedAt": 1770117756259,
+    "commit": null
   },
-  "history": []
+  "history": [
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770022153888,
+      "commit": "https://github.com/clawdbot/skills/commit/c919358cfa66822350dfb1e02c36e52c4cd35fb0"
+    }
+  ]
 }
