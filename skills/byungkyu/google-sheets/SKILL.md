@@ -23,10 +23,10 @@ curl -s -X GET 'https://gateway.maton.ai/google-sheets/v4/spreadsheets/SPREADSHE
 ## Base URL
 
 ```
-https://gateway.maton.ai/google-sheets/v4/spreadsheets/{spreadsheetId}/{endpoint}
+https://gateway.maton.ai/google-sheets/{native-api-path}
 ```
 
-The gateway proxies requests to `sheets.googleapis.com` and automatically injects your OAuth token.
+Replace `{native-api-path}` with the actual Google Sheets API endpoint path. The gateway proxies requests to `sheets.googleapis.com` and automatically injects your OAuth token.
 
 ## Authentication
 
@@ -44,7 +44,7 @@ export MATON_API_KEY="YOUR_API_KEY"
 
 ### Getting Your API Key
 
-1. Sign in at [maton.ai](https://maton.ai)
+1. Sign in or create an account at [maton.ai](https://maton.ai)
 2. Go to [maton.ai/settings](https://maton.ai/settings)
 3. Copy your API key
 
@@ -81,8 +81,11 @@ curl -s -X GET 'https://ctrl.maton.ai/connections/{connection_id}' \
   "connection": {
     "connection_id": "21fd90f9-5935-43cd-b6c8-bde9d915ca80",
     "status": "ACTIVE",
+    "creation_time": "2025-12-08T07:20:53.488460Z",
+    "last_updated_time": "2026-01-31T20:03:32.593153Z",
     "url": "https://connect.maton.ai/?session_token=...",
-    "app": "google-sheets"
+    "app": "google-sheets",
+    "metadata": {}
   }
 }
 ```
@@ -96,15 +99,17 @@ curl -s -X DELETE 'https://ctrl.maton.ai/connections/{connection_id}' \
   -H 'Authorization: Bearer YOUR_API_KEY'
 ```
 
-### Using Multiple Connections
+### Specifying Connection
 
-If you have multiple Google accounts connected, specify which to use:
+If you have multiple Google accounts connected, specify which one to use with the `Maton-Connection` header:
 
 ```bash
 curl -s -X GET 'https://gateway.maton.ai/google-sheets/v4/spreadsheets/SPREADSHEET_ID' \
   -H 'Authorization: Bearer YOUR_API_KEY' \
-  -H 'Maton-Connection: {connection_id}'
+  -H 'Maton-Connection: 21fd90f9-5935-43cd-b6c8-bde9d915ca80'
 ```
+
+If omitted, the gateway uses the default (oldest) active connection.
 
 ## API Reference
 
