@@ -1,6 +1,8 @@
 ---
 name: agent-chronicle
+version: 0.3.2
 description: AI perspective journaling - document daily experiences, emotions, and learnings from the agent's viewpoint. Use when asked about diary, journal entries, self-reflection, or documenting AI experiences. Creates structured daily entries capturing projects, wins, frustrations, learnings, and emotional states.
+metadata: {"clawdbot":{"requires":{"bins":["python3"],"env":[]}}}
 ---
 
 # Agent Chronicle 📜

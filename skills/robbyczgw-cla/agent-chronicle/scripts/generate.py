@@ -191,6 +191,75 @@ def render_template(template, entry):
     
     return result
 
+
+def render_telegram(entry):
+    """Render entry for Telegram - simple text with emojis, no markdown"""
+    lines = []
+    
+    lines.append(f"📓 *Agent Chronicle - {entry.get('date', '')}*\n")
+    
+    if entry.get('title'):
+        lines.append(f"🎭 *{entry['title']}*\n")
+    
+    if entry.get('summary'):
+        lines.append(f"{entry['summary']}\n")
+    
+    lines.append("---")
+    
+    # Projects
+    if entry.get('projects') and '- ' in str(entry['projects']):
+        lines.append("\n📁 *Projekte:*")
+        projects = entry['projects'].split('\n')
+        for p in projects:
+            p = p.strip().lstrip('- ').strip()
+            if p and p != '(review session log)':
+                lines.append(f"  → {p}")
+    
+    # Wins
+    if entry.get('wins') and entry['wins'].strip() not in ['- ', '']:
+        lines.append("\n💪 *Highlights:*")
+        wins = entry['wins'].split('\n')
+        for w in wins:
+            w = w.strip().lstrip('- ').strip()
+            if w:
+                lines.append(f"  ✅ {w}")
+    
+    # Frustrations
+    if entry.get('frustrations') and entry['frustrations'].strip() not in ['- ', '']:
+        lines.append("\n😤 *Frustrations:*")
+        frus = entry['frustrations'].split('\n')
+        for f in frus:
+            f = f.strip().lstrip('- ').strip()
+            if f:
+                lines.append(f"  ⚠️ {f}")
+    
+    # Learnings
+    if entry.get('learnings') and entry['learnings'].strip() not in ['- ', '']:
+        lines.append("\n📚 *Learnings:*")
+        learn = entry['learnings'].split('\n')
+        for l in learn:
+            l = l.strip().lstrip('- ').strip()
+            if l:
+                lines.append(f"  💡 {l}")
+    
+    # Emotional state
+    if entry.get('emotional_state'):
+        lines.append(f"\n🫠 *Vibe:* {entry['emotional_state']}")
+    
+    # Tomorrow
+    if entry.get('tomorrow') and entry['tomorrow'].strip() not in ['- ', '']:
+        lines.append("\n🚀 *Morgen:*")
+        tom = entry['tomorrow'].split('\n')
+        for t in tom:
+            t = t.strip().lstrip('- ').strip()
+            if t:
+                lines.append(f"  → {t}")
+    
+    lines.append("\n---")
+    lines.append("*Self-Reflection:* Automatisierung ist toll, bis sie kreativ wird.")
+    
+    return '\n'.join(lines)
+
 def interactive_mode(date_str):
     """Generate entry interactively"""
     print(f"\n📓 AI Diary Entry for {date_str}\n")
@@ -308,6 +377,7 @@ def main():
     parser.add_argument("--interactive", action="store_true", help="Interactive mode")
     parser.add_argument("--dry-run", action="store_true", help="Preview without saving")
     parser.add_argument("--verbose", "-v", action="store_true", help="Verbose output")
+    parser.add_argument("--telegram", action="store_true", help="Output Telegram-friendly format (no markdown)")
     
     args = parser.parse_args()
     
@@ -344,10 +414,17 @@ def main():
             entry = interactive_mode(date_str)
     
     if entry:
-        saved_file = save_entry(entry, diary_path, dry_run=args.dry_run)
-        # Append to daily memory if enabled and not dry run
-        if saved_file and not args.dry_run:
-            append_to_daily_memory(entry, config, workspace)
+        # If --telegram flag, output Telegram format instead of saving
+        if args.telegram:
+            telegram_output = render_telegram(entry)
+            print("\n" + telegram_output)
+            print("\n[Telegram-ready output - no markdown headers]")
+        else:
+            # Normal mode: save to file
+            saved_file = save_entry(entry, diary_path, dry_run=args.dry_run)
+            # Append to daily memory if enabled and not dry run
+            if saved_file and not args.dry_run:
+                append_to_daily_memory(entry, config, workspace)
     else:
         print("No entry generated.")
 
