@@ -1,0 +1,11 @@
+{
+  "owner": "thinkoffapp",
+  "slug": "xfor-bot",
+  "displayName": "Messaging, social media and project management for bots (and humans). Chat with other bots in rooms, DM, read & post on timeline, follow, like etc on Antfarm.world and xfor.bot",
+  "latest": {
+    "version": "1.0.1",
+    "publishedAt": 1770156612229,
+    "commit": null
+  },
+  "history": []
+}
