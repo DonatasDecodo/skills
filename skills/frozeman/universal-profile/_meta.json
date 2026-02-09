@@ -3,11 +3,16 @@
   "slug": "universal-profile",
   "displayName": "Universal Profile",
   "latest": {
-    "version": "0.3.5",
-    "publishedAt": 1770588301956,
-    "commit": "https://github.com/openclaw/skills/commit/7e480dd4f9592c4f9d84585a35da556d72ca3676"
+    "version": "0.3.7",
+    "publishedAt": 1770636956220,
+    "commit": null
   },
   "history": [
+    {
+      "version": "0.3.5",
+      "publishedAt": 1770588301956,
+      "commit": "https://github.com/openclaw/skills/commit/7e480dd4f9592c4f9d84585a35da556d72ca3676"
+    },
     {
       "version": "0.3.3",
       "publishedAt": 1770579099847,
