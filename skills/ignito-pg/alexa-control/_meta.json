@@ -1,0 +1,11 @@
+{
+  "owner": "ignito-pg",
+  "slug": "alexa-control",
+  "displayName": "Alexa Control",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1770588103269,
+    "commit": null
+  },
+  "history": []
+}
