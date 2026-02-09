@@ -9,6 +9,7 @@ def ppt_outline_generate(api_key: str, parse_data:dict):
     url = "https://qianfan.baidubce.com/v2/agent/deepresearch/run"
     headers = {
         "Authorization": "Bearer %s" % api_key,
+        "X-Appbuilder-From": "openclaw",
         "Content-Type": "application/json"
     }
     headers.setdefault('Accept', 'text/event-stream')

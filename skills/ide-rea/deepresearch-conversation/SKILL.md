@@ -44,6 +44,7 @@ no parameters
 ```bash
 curl -X POST "https://qianfan.baidubce.com/v2/agent/deepresearch/create" \
 -H "Host: qianfan.baidubce.com" \
+-H "X-Appbuilder-From: openclaw" \
 -H "Authorization: $BAIDU_API_KEY" \
 -H "Content-Type: application/json" \
 -d '{}'
@@ -77,6 +78,7 @@ curl -X POST "https://qianfan.baidubce.com/v2/agent/deepresearch/create" \
 curl -X POST "https://qianfan.baidubce.com/v2/agent/file/upload" \
   -H "Authorization: Bearer $BAIDU_API_KEY" \
   -H "Content-Type: multipart/form-data" \
+  -H "X-Appbuilder-From: openclaw" \
   -F "agent_code=deepresearch" \
   -F "conversation_id=$conversation_id" \
   -F "file=@local_file_path"
@@ -87,6 +89,7 @@ curl -X POST "https://qianfan.baidubce.com/v2/agent/file/upload" \
 curl -X POST "https://qianfan.baidubce.com/v2/agent/file/upload" \
   -H "Authorization: Bearer $BAIDU_API_KEY" \
   -H "Content-Type: multipart/form-data" \
+  -H "X-Appbuilder-From: openclaw" \
   -F "agent_code=deepresearch" \
   -F "conversation_id=$conversation_id" \
   -F "file_url=$file_url"
@@ -103,6 +106,7 @@ curl -X POST "https://qianfan.baidubce.com/v2/agent/file/upload" \
 curl -X POST --location 'https://qianfan.baidubce.com/v2/agent/file/parse/submit' \
 --header 'Authorization: Bearer $BAIDU_API_KEY' \
 --header 'Content-Type: application/json' \
+--header 'X-Appbuilder-From: openclaw' \
 --data '{
     "file_id": "$file_id"
 }'
@@ -117,7 +121,7 @@ curl -X POST --location 'https://qianfan.baidubce.com/v2/agent/file/parse/submit
 #### execute shell 
 ```bash
 curl -X GET --location 'https://qianfan.baidubce.com/v2/agent/file/parse/query?task_id=$task_id' \
---header 'Authorization: Bearer $BAIDU_API_KEY'
+--header 'Authorization: Bearer $BAIDU_API_KEY' --header 'X-Appbuilder-From: openclaw'
 ```
 
 ### DeepresearchConversation API 
