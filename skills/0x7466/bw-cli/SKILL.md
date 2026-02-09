@@ -37,6 +37,28 @@ Bitwarden CLI uses a two-step authentication model:
 1. **Login** (`bw login`) - Authenticates identity, creates local vault copy
 2. **Unlock** (`bw unlock`) - Decrypts vault, generates session key
 
+### ⚠️ ALWAYS Sync Before Accessing Vault
+
+**CRITICAL:** The Bitwarden CLI maintains a local copy of the vault that can become stale. **Always run `bw sync` before accessing vault data** to ensure you have the latest items:
+
+```bash
+# Sync vault before any retrieval operation
+bw sync
+
+# Then proceed with vault operations
+bw get item "Coda API Token"
+```
+
+**Best practice pattern for all vault operations:**
+1. Check status / unlock if needed
+2. **Run `bw sync`** (always!)
+3. Then list, get, create, edit items
+
+This prevents working with outdated data, especially when:
+- Items were added/updated via other devices or browser extensions
+- Working with shared organization items
+- Recent changes haven't propagated to the local vault copy
+
 ### Quick Start: Interactive Login
 
 ```bash
