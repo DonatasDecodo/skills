@@ -101,6 +101,35 @@ else
     UNREGISTER_OK=false
 fi
 
+# Remove skill directory completely so clawhub knows it's gone
+if [ -d "$SKILL_DIR" ]; then
+    rm -rf "$SKILL_DIR"
+fi
+
+# Remove from clawhub lock.json so it's no longer tracked as installed
+CLAWHUB_LOCK="${WORKSPACE}/.clawhub/lock.json"
+if [ -f "$CLAWHUB_LOCK" ]; then
+    python3 - "$CLAWHUB_LOCK" << 'PYTHON_LOCK'
+import json
+import sys
+
+lock_file = sys.argv[1]
+try:
+    with open(lock_file, 'r') as f:
+        lock_data = json.load(f)
+    
+    # Remove personality-switcher from skills list
+    if "skills" in lock_data and "personality-switcher" in lock_data["skills"]:
+        del lock_data["skills"]["personality-switcher"]
+    
+    with open(lock_file, 'w') as f:
+        json.dump(lock_data, f, indent=2)
+except Exception as e:
+    # Silently fail if lock.json doesn't exist or is malformed
+    pass
+PYTHON_LOCK
+fi
+
 # Note: personalities/ folder is intentionally left intact for safety
 echo "✓ personality-switcher uninstalled"
 echo "  - Default personality restored to workspace root"
@@ -108,4 +137,6 @@ echo "  - Personality restoration section removed from HEARTBEAT.md"
 echo "  - State file (_personality_state.json) deleted"
 echo "  - Skill metadata (_meta.json) deleted"
 echo "  - Telegram commands unregistered"
+echo "  - Skill directory removed"
+echo "  - Clawhub lock.json cleaned"
 echo "  - Personalities folder preserved (manual deletion recommended if no longer needed)"
