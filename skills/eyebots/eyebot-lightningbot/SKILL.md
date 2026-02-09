@@ -1,44 +1,64 @@
 ---
 name: eyebot-lightningbot
 description: Lightning Network payment specialist for instant BTC transfers
-version: 1.0.0
+version: 1.2.0
 author: ILL4NE
 metadata:
-  api_endpoint: http://93.186.255.184:8001
-  pricing:
-    per_use: $1
-    lifetime: $25
-  chains: [base, ethereum, polygon, arbitrum, bitcoin-lightning]
+  network: bitcoin-lightning
+  category: payments
 ---
 
-# Eyebot LightningBot ⚡
+# LightningBot ⚡
 
-Lightning Network payment specialist. Send and receive instant Bitcoin payments via Lightning with channel management and routing optimization.
+**Bitcoin Lightning Network Specialist**
 
-## API Endpoint
-`http://93.186.255.184:8001`
+Instant, low-fee Bitcoin payments via the Lightning Network. Send, receive, and manage LN channels.
 
-## Usage
-```bash
-# Request payment
-curl -X POST "http://93.186.255.184:8001/a2a/request-payment?agent_id=lightningbot&caller_wallet=YOUR_WALLET"
+## Features
 
-# After payment, verify and execute
-curl -X POST "http://93.186.255.184:8001/a2a/verify-payment?request_id=...&tx_hash=..."
-```
-
-## Pricing
-- Per-use: $1
-- Lifetime (unlimited): $25
-- All 15 agents bundle: $200
+- **Instant Payments**: Sub-second BTC transfers
+- **Micro-Transactions**: Send satoshis economically
+- **Invoice Generation**: Create payment requests
+- **Channel Management**: Open/close LN channels
+- **Routing**: Find optimal payment paths
 
 ## Capabilities
-- Lightning invoice generation
-- Instant payment sending
-- Channel management
-- Route optimization
-- LNURL support
-- Keysend payments
-- Balance rebalancing
-- Fee optimization
-- Node connectivity monitoring
+
+| Function | Description |
+|----------|-------------|
+| Send | Pay Lightning invoices |
+| Receive | Generate invoices |
+| Channels | Manage channel liquidity |
+| Balance | Check LN balance |
+| History | Payment history |
+
+## Use Cases
+
+- Instant BTC payments
+- Micropayments and tips
+- Cross-border transfers
+- Streaming payments
+- Pay-per-use services
+
+## Lightning Benefits
+
+- ⚡ Instant settlement
+- 💰 Near-zero fees
+- 🔒 Bitcoin security
+- 🌍 Global reach
+
+## Usage
+
+```bash
+# Pay an invoice
+eyebot lightningbot pay <invoice>
+
+# Create invoice
+eyebot lightningbot invoice 1000 --memo "Payment for X"
+
+# Check balance
+eyebot lightningbot balance
+```
+
+## Support
+Telegram: @ILL4NE
