@@ -1,11 +1,17 @@
 {
   "owner": "shensi8312",
   "slug": "blogburst",
-  "displayName": "BlogBurst",
+  "displayName": "Blogburst",
   "latest": {
-    "version": "1.0.5",
-    "publishedAt": 1770188542338,
-    "commit": "https://github.com/clawdbot/skills/commit/985585f791c0515b90fdbba3b4954bea3944326b"
+    "version": "1.2.0",
+    "publishedAt": 1770698658522,
+    "commit": null
   },
-  "history": []
+  "history": [
+    {
+      "version": "1.0.5",
+      "publishedAt": 1770188542338,
+      "commit": "https://github.com/clawdbot/skills/commit/985585f791c0515b90fdbba3b4954bea3944326b"
+    }
+  ]
 }
