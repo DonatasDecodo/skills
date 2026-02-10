@@ -1,0 +1,11 @@
+{
+  "owner": "the-nexus-guard",
+  "slug": "aip-identity",
+  "displayName": "AIP Identity",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1770744334673,
+    "commit": null
+  },
+  "history": []
+}
