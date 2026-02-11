@@ -8,6 +8,11 @@ description: |
 metadata:
   author: maton
   version: "1.0"
+  clawdbot:
+    emoji: 🧠
+    requires:
+      env:
+        - MATON_API_KEY
 ---
 
 # Box
@@ -677,9 +682,7 @@ Box errors include detailed messages:
 }
 ```
 
-### Troubleshooting: Invalid API Key
-
-**When you receive a "Invalid API key" error, ALWAYS follow these steps before concluding there is an issue:**
+### Troubleshooting: API Key Issues
 
 1. Check that the `MATON_API_KEY` environment variable is set:
 
@@ -698,9 +701,18 @@ print(json.dumps(json.load(urllib.request.urlopen(req)), indent=2))
 EOF
 ```
 
+### Troubleshooting: Invalid App Name
+
+1. Ensure your URL path starts with `box`. For example:
+
+- Correct: `https://gateway.maton.ai/box/2.0/users/me`
+- Incorrect: `https://gateway.maton.ai/2.0/users/me`
+
 ## Resources
 
 - [Box API Reference](https://developer.box.com/reference)
 - [Box Developer Documentation](https://developer.box.com/guides)
 - [Authentication Guide](https://developer.box.com/guides/authentication)
 - [Box SDKs](https://developer.box.com/sdks-and-tools)
+- [Maton Community](https://discord.com/invite/dBfFAcefs2)
+- [Maton Support](mailto:support@maton.ai)
