@@ -12,5 +12,15 @@
     "pdf",
     "structured-data"
   ],
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "openclaw": {
+    "requiredEnv": [
+      "DOCSTRANGE_API_KEY"
+    ],
+    "primaryEnv": "DOCSTRANGE_API_KEY",
+    "endpoints": [
+      "https://extraction-api.nanonets.com"
+    ],
+    "requiresCredentials": true
+  }
 }
