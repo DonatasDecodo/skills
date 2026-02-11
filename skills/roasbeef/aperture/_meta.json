@@ -1,0 +1,11 @@
+{
+  "owner": "roasbeef",
+  "slug": "aperture",
+  "displayName": "aperture: the L402 aware reverse proxy",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1770777071122,
+    "commit": null
+  },
+  "history": []
+}
