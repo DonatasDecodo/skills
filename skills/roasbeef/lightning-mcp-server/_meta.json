@@ -1,0 +1,11 @@
+{
+  "owner": "roasbeef",
+  "slug": "lightning-mcp-server",
+  "displayName": "Lightning MCP Server",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1770777276709,
+    "commit": null
+  },
+  "history": []
+}
