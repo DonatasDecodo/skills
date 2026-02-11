@@ -3,11 +3,16 @@
   "slug": "autonomous-agent",
   "displayName": "Autonomous Agent Skills",
   "latest": {
-    "version": "2.1.0",
-    "publishedAt": 1770632712743,
-    "commit": "https://github.com/openclaw/skills/commit/43cc8ef94021943917b2a35d97fa201e160fd71b"
+    "version": "2.1.1",
+    "publishedAt": 1770802691043,
+    "commit": null
   },
   "history": [
+    {
+      "version": "2.1.0",
+      "publishedAt": 1770632712743,
+      "commit": "https://github.com/openclaw/skills/commit/43cc8ef94021943917b2a35d97fa201e160fd71b"
+    },
     {
       "version": "2.0.0",
       "publishedAt": 1770509143126,
