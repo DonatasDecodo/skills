@@ -8,6 +8,11 @@ description: |
 metadata:
   author: maton
   version: "1.0"
+  clawdbot:
+    emoji: 🧠
+    requires:
+      env:
+        - MATON_API_KEY
 ---
 
 # Quo
@@ -590,9 +595,7 @@ data = response.json()
 | 429 | Rate limited |
 | 500 | Server error |
 
-### Troubleshooting: Invalid API Key
-
-**When you receive an "Invalid API key" error, ALWAYS follow these steps before concluding there is an issue:**
+### Troubleshooting: API Key Issues
 
 1. Check that the `MATON_API_KEY` environment variable is set:
 
@@ -611,8 +614,17 @@ print(json.dumps(json.load(urllib.request.urlopen(req)), indent=2))
 EOF
 ```
 
+### Troubleshooting: Invalid App Name
+
+1. Ensure your URL path starts with `quo`. For example:
+
+- Correct: `https://gateway.maton.ai/quo/v1/phone-numbers`
+- Incorrect: `https://gateway.maton.ai/openphone/v1/phone-numbers`
+
 ## Resources
 
 - [Quo API Introduction](https://www.quo.com/docs/mdx/api-reference/introduction)
 - [Quo API Authentication](https://www.quo.com/docs/mdx/api-reference/authentication)
 - [Quo Support Center](https://support.quo.com/core-concepts/integrations/api)
+- [Maton Community](https://discord.com/invite/dBfFAcefs2)
+- [Maton Support](mailto:support@maton.ai)
