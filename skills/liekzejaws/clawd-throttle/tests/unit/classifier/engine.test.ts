@@ -3,7 +3,7 @@ import { classifyPrompt, loadWeights } from '../../../src/classifier/engine.js';
 import path from 'node:path';
 
 const weights = loadWeights(path.resolve('data/classifier-weights.json'));
-const thresholds = { simpleMax: 0.30, complexMin: 0.60 };
+const thresholds = { simpleMax: 0.30, complexMin: 0.65 };
 
 describe('classifyPrompt', () => {
   it('classifies greetings as simple', () => {
@@ -17,7 +17,7 @@ describe('classifyPrompt', () => {
     expect(result.tier).toBe('simple');
   });
 
-  it('classifies moderate coding tasks as simple or standard', () => {
+  it('classifies moderate coding tasks as standard', () => {
     const text = `Please refactor this function to use async/await:
 \`\`\`typescript
 function fetchData(url) {
@@ -29,10 +29,10 @@ function fetchData(url) {
 \`\`\`
 Explain why async/await is better here.`;
     const result = classifyPrompt(text, { messageCount: 5 }, weights, thresholds);
-    expect(['simple', 'standard']).toContain(result.tier); // Short refactor can go either way
+    expect(result.tier).toBe('standard');
   });
 
-  it.skip('classifies complex multi-step architectural tasks as complex', () => { // TODO: tune classifier weights
+  it('classifies complex multi-step architectural tasks as complex', () => {
     const text = `I need you to architect a complete microservices system. Here are the requirements:
 
 1. Design a user authentication service with OAuth2 and JWT
@@ -53,7 +53,7 @@ rules, and set up distributed tracing with OpenTelemetry.`;
       systemPrompt: 'You are a senior architect. You must provide structured JSON responses with detailed analysis. Never give superficial answers. Always consider security implications. Your role is to guide complex technical decisions.',
     }, weights, thresholds);
     expect(result.tier).toBe('complex');
-    expect(result.score).toBeGreaterThanOrEqual(0.60);
+    expect(result.score).toBeGreaterThanOrEqual(0.65);
   });
 
   it('runs in under 1ms', () => {

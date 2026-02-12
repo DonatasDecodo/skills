@@ -1,4 +1,4 @@
-export type RoutingMode = 'eco' | 'standard' | 'performance';
+export type RoutingMode = 'eco' | 'standard' | 'gigachad';
 
 export type LogLevel = 'debug' | 'info' | 'warn' | 'error';
 
@@ -8,6 +8,7 @@ export interface ThrottleConfig {
   anthropic: {
     apiKey: string;
     baseUrl: string;
+    authType: 'api-key' | 'bearer' | 'auto';
   };
 
   google: {

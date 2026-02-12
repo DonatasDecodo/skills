@@ -82,7 +82,7 @@ describe('scoreSimpleIndicators', () => {
 
   it('scores long complex text low', () => {
     const text = 'Please implement a full authentication system with OAuth2, JWT tokens, refresh token rotation, and role-based access control.';
-    expect(scoreSimpleIndicators(text)).toBeLessThan(0.3); // Complex text scores low on simple indicators
+    expect(scoreSimpleIndicators(text)).toBeLessThan(0.2);
   });
 });
 
@@ -109,7 +109,7 @@ describe('scoreMultiStepPatterns', () => {
 
 describe('scoreQuestionCount', () => {
   it('scores zero for no questions', () => {
-    expect(scoreQuestionCount('Do this thing.')).toBeLessThan(0.1);
+    expect(scoreQuestionCount('Do this thing.')).toBe(0);
   });
 
   it('scores one question moderately', () => {

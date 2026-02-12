@@ -1,12 +1,6 @@
 {
   "name": "clawd-throttle-skill",
-  "version": "1.0.0",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/liekzejaws/clawd-throttle"
-  },
-  "keywords": ["openclaw", "llm", "router", "cost-optimization", "mcp", "proxy"],
+  "version": "2.0.0",
   "description": "OpenClaw skill that routes LLM requests to the cheapest capable model based on prompt complexity",
   "type": "module",
   "main": "src/index.ts",

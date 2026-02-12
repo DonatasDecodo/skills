@@ -6,16 +6,15 @@ const log = createLogger('overrides');
 
 // Model hierarchy for sub-agent step-down (cheapest → most expensive)
 const MODEL_HIERARCHY: string[] = [
-  'gemini-2.0-flash-lite',   // tier 0 — ultra budget
-  'gemini-2.5-flash',        // tier 1 — budget
-  'deepseek-chat',           // tier 2 — value
-  'claude-sonnet-4-5',       // tier 3 — balanced
-  'claude-opus-4-5',         // tier 4 — flagship
-  'claude-opus-4-6',         // tier 5 — premium
+  'gemini-2.5-flash',                // tier 0 — budget
+  'grok-4-1-fast-non-reasoning',     // tier 1 — speed
+  'claude-haiku-4-5',                // tier 2 — capable
+  'claude-sonnet-4-5',               // tier 3 — balanced
+  'claude-opus-4-6',                 // tier 4 — premium
 ];
 
 // Default cheapest model for heartbeats
-const HEARTBEAT_MODEL = 'gemini-2.5-flash';
+const HEARTBEAT_MODEL = 'grok-4-1-fast-non-reasoning';
 
 // Force model aliases: short name → catalog model ID
 export const FORCE_MODEL_MAP: Record<string, string> = {
@@ -27,7 +26,6 @@ export const FORCE_MODEL_MAP: Record<string, string> = {
   haiku: 'claude-haiku-4-5',
   'haiku-3-5': 'claude-haiku-3-5',
   flash: 'gemini-2.5-flash',
-  'flash-lite': 'gemini-2.0-flash-lite',
   // OpenAI
   'gpt-5': 'gpt-5.2',
   'gpt-5.2': 'gpt-5.2',
@@ -42,11 +40,14 @@ export const FORCE_MODEL_MAP: Record<string, string> = {
   'deepseek-r1': 'deepseek-reasoner',
   'deepseek-reasoner': 'deepseek-reasoner',
   // xAI / Grok
-  grok: 'grok-4',
-  'grok-4': 'grok-4',
+  grok: 'grok-4-0709',
+  'grok-4': 'grok-4-0709',
+  'grok-4-0709': 'grok-4-0709',
   'grok-3': 'grok-3',
   'grok-mini': 'grok-3-mini',
-  'grok-fast': 'grok-4.1-fast',
+  'grok-fast': 'grok-4-1-fast-non-reasoning',
+  'grok-4.1-fast': 'grok-4-1-fast-non-reasoning',
+  'grok-4-1-fast-non-reasoning': 'grok-4-1-fast-non-reasoning',
   // Moonshot / Kimi
   kimi: 'kimi-k2.5',
   'kimi-thinking': 'kimi-k2-thinking',

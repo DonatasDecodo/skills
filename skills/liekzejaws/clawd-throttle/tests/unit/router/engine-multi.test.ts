@@ -13,7 +13,7 @@ const noOverride: OverrideResult = { kind: 'none' };
 function makeConfig(keys: Partial<Record<string, string>> = {}): ThrottleConfig {
   return {
     mode: 'standard',
-    anthropic: { apiKey: keys.anthropic ?? '', baseUrl: 'https://api.anthropic.com' },
+    anthropic: { apiKey: keys.anthropic ?? '', baseUrl: 'https://api.anthropic.com', authType: 'auto' as const },
     google: { apiKey: keys.google ?? '', baseUrl: 'https://generativelanguage.googleapis.com' },
     openai: { apiKey: keys.openai ?? '', baseUrl: 'https://api.openai.com/v1' },
     deepseek: { apiKey: keys.deepseek ?? '', baseUrl: 'https://api.deepseek.com/v1' },
@@ -46,9 +46,10 @@ describe('Multi-provider preference-list routing', () => {
   describe('only Google key configured', () => {
     const config = makeConfig({ google: 'test-google-key' });
 
-    it('eco/simple routes to Ollama (always available)', () => {
+    it('eco/simple routes to Flash (Grok Fast not configured)', () => {
       const result = routeRequest(makeClassification('simple', 0.1), 'eco', noOverride, registry, config, routingTable);
-      expect(result.model.id).toBe('ollama-default');
+      // Preference: grok-fast (xai, no), flash (google, yes)
+      expect(result.model.id).toBe('gemini-2.5-flash');
     });
 
     it('eco/standard routes to Flash', () => {
@@ -58,9 +59,10 @@ describe('Multi-provider preference-list routing', () => {
 
     it('eco/complex falls back when no preferred model available', () => {
       const result = routeRequest(makeClassification('complex', 0.8), 'eco', noOverride, registry, config, routingTable);
-      // Preference: deepseek-reasoner, kimi-k2.5, claude-sonnet-4-5 — none available
+      // Preference: haiku (no), deepseek-reasoner (no), kimi-k2.5 (no), grok-3-mini (no)
       // Fallback: cheapest available across Google + Ollama
-      expect(['ollama-default', 'gemini-2.0-flash-lite', 'gemini-2.5-flash']).toContain(result.model.id);
+      expect(result.model.id).toBe('ollama-default');
+      expect(result.reasoning).toContain('Fallback');
     });
 
     it('standard/complex falls back since no Anthropic/OpenAI/xAI configured', () => {
@@ -79,13 +81,14 @@ describe('Multi-provider preference-list routing', () => {
 
     it('eco/complex routes to DeepSeek Reasoner', () => {
       const result = routeRequest(makeClassification('complex', 0.8), 'eco', noOverride, registry, config, routingTable);
+      // Preference: haiku (no), deepseek-reasoner (yes)
       expect(result.model.id).toBe('deepseek-reasoner');
     });
 
-    it('standard/standard routes to DeepSeek Reasoner', () => {
-      // Preference: kimi-k2.5, claude-sonnet-4-5, gpt-5.1, deepseek-reasoner
+    it('standard/standard routes to Flash', () => {
+      // Preference: haiku (no), grok-fast (no), flash (yes)
       const result = routeRequest(makeClassification('standard', 0.4), 'standard', noOverride, registry, config, routingTable);
-      expect(result.model.id).toBe('deepseek-reasoner');
+      expect(result.model.id).toBe('gemini-2.5-flash');
     });
   });
 
@@ -95,23 +98,23 @@ describe('Multi-provider preference-list routing', () => {
       deepseek: 'test', xai: 'test', moonshot: 'test', mistral: 'test',
     });
 
-    it('eco/simple routes to Ollama (cheapest in preference)', () => {
+    it('eco/simple routes to Grok Fast (first in preference)', () => {
       const result = routeRequest(makeClassification('simple', 0.1), 'eco', noOverride, registry, config, routingTable);
-      expect(result.model.id).toBe('ollama-default');
+      expect(result.model.id).toBe('grok-4-1-fast-non-reasoning');
     });
 
-    it('standard/standard routes to Kimi (first in preference)', () => {
+    it('standard/standard routes to Haiku (first in preference)', () => {
       const result = routeRequest(makeClassification('standard', 0.4), 'standard', noOverride, registry, config, routingTable);
-      expect(result.model.id).toBe('kimi-k2.5');
+      expect(result.model.id).toBe('claude-haiku-4-5');
     });
 
-    it('standard/complex routes to Opus', () => {
+    it('standard/complex routes to Sonnet', () => {
       const result = routeRequest(makeClassification('complex', 0.8), 'standard', noOverride, registry, config, routingTable);
-      expect(result.model.id).toBe('claude-opus-4-5');
+      expect(result.model.id).toBe('claude-sonnet-4-5');
     });
 
-    it('performance/complex routes to Opus 4.6', () => {
-      const result = routeRequest(makeClassification('complex', 0.8), 'performance', noOverride, registry, config, routingTable);
+    it('gigachad/complex routes to Opus 4.6', () => {
+      const result = routeRequest(makeClassification('complex', 0.8), 'gigachad', noOverride, registry, config, routingTable);
       expect(result.model.id).toBe('claude-opus-4-6');
     });
   });
@@ -144,13 +147,13 @@ describe('Multi-provider preference-list routing', () => {
 
     it('resolvePreference returns null when no model available', () => {
       const config = makeConfig({});
-      const result = registry.resolvePreference(['claude-opus-4-5', 'gpt-5.2', 'grok-4'], config);
+      const result = registry.resolvePreference(['claude-opus-4-5', 'gpt-5.2', 'grok-4-0709'], config);
       expect(result).toBeNull();
     });
 
     it('resolvePreference returns first available model', () => {
       const config = makeConfig({ openai: 'key' });
-      const result = registry.resolvePreference(['claude-opus-4-5', 'gpt-5.2', 'grok-4'], config);
+      const result = registry.resolvePreference(['claude-opus-4-5', 'gpt-5.2', 'grok-4-0709'], config);
       expect(result?.id).toBe('gpt-5.2');
     });
   });

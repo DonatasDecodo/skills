@@ -21,7 +21,7 @@ describe('detectOverrides', () => {
     it('detects ping as heartbeat', () => {
       const result = detectOverrides([{ role: 'user', content: 'ping' }], undefined, undefined, logReader);
       expect(result.kind).toBe('heartbeat');
-      expect(result.forcedModelId).toBe('gemini-2.5-flash');
+      expect(result.forcedModelId).toBe('grok-4-1-fast-non-reasoning');
     });
 
     it('detects summarize as heartbeat', () => {
@@ -68,7 +68,7 @@ describe('detectOverrides', () => {
     it('detects /grok slash command', () => {
       const result = detectOverrides([{ role: 'user', content: '/grok what is this' }], undefined, undefined, logReader);
       expect(result.kind).toBe('force_model');
-      expect(result.forcedModelId).toBe('grok-4');
+      expect(result.forcedModelId).toBe('grok-4-0709');
     });
 
     it('detects /kimi slash command', () => {
@@ -114,17 +114,17 @@ describe('detectOverrides', () => {
   });
 
   describe('sub-agent step-down', () => {
-    it('steps down from Opus 4-5 to Sonnet', () => {
-      const parentId = 'test-parent-id';
+    it('steps down from Opus 4.6 to Sonnet', () => {
+      const parentId = 'test-parent-opus';
       logWriter.append({
         requestId: parentId,
         timestamp: new Date().toISOString(),
         promptHash: 'abc',
         compositeScore: 0.8,
         tier: 'complex',
-        selectedModel: 'claude-opus-4-5',
+        selectedModel: 'claude-opus-4-6',
         provider: 'anthropic',
-        mode: 'standard',
+        mode: 'gigachad',
         override: 'none',
         inputTokens: 100,
         outputTokens: 200,
@@ -142,7 +142,7 @@ describe('detectOverrides', () => {
       expect(result.forcedModelId).toBe('claude-sonnet-4-5');
     });
 
-    it('steps down from Sonnet to DeepSeek-chat', () => {
+    it('steps down from Sonnet to Haiku', () => {
       const parentId = 'test-parent-sonnet';
       logWriter.append({
         requestId: parentId,
@@ -167,10 +167,66 @@ describe('detectOverrides', () => {
         logReader,
       );
       expect(result.kind).toBe('sub_agent_stepdown');
-      expect(result.forcedModelId).toBe('deepseek-chat');
+      expect(result.forcedModelId).toBe('claude-haiku-4-5');
     });
 
-    it('steps down from Flash to Flash-Lite', () => {
+    it('steps down from Haiku to Grok Fast', () => {
+      const parentId = 'test-parent-haiku';
+      logWriter.append({
+        requestId: parentId,
+        timestamp: new Date().toISOString(),
+        promptHash: 'abc',
+        compositeScore: 0.4,
+        tier: 'standard',
+        selectedModel: 'claude-haiku-4-5',
+        provider: 'anthropic',
+        mode: 'standard',
+        override: 'none',
+        inputTokens: 50,
+        outputTokens: 100,
+        estimatedCostUsd: 0.001,
+        latencyMs: 200,
+      });
+
+      const result = detectOverrides(
+        [{ role: 'user', content: 'sub task' }],
+        undefined,
+        parentId,
+        logReader,
+      );
+      expect(result.kind).toBe('sub_agent_stepdown');
+      expect(result.forcedModelId).toBe('grok-4-1-fast-non-reasoning');
+    });
+
+    it('steps down from Grok Fast to Flash', () => {
+      const parentId = 'test-parent-grok-fast';
+      logWriter.append({
+        requestId: parentId,
+        timestamp: new Date().toISOString(),
+        promptHash: 'abc',
+        compositeScore: 0.1,
+        tier: 'simple',
+        selectedModel: 'grok-4-1-fast-non-reasoning',
+        provider: 'xai',
+        mode: 'eco',
+        override: 'none',
+        inputTokens: 50,
+        outputTokens: 100,
+        estimatedCostUsd: 0.001,
+        latencyMs: 200,
+      });
+
+      const result = detectOverrides(
+        [{ role: 'user', content: 'sub task' }],
+        undefined,
+        parentId,
+        logReader,
+      );
+      expect(result.kind).toBe('sub_agent_stepdown');
+      expect(result.forcedModelId).toBe('gemini-2.5-flash');
+    });
+
+    it('inherits Flash (already cheapest in hierarchy)', () => {
       const parentId = 'test-parent-flash';
       logWriter.append({
         requestId: parentId,
@@ -194,36 +250,8 @@ describe('detectOverrides', () => {
         parentId,
         logReader,
       );
-      expect(result.kind).toBe('sub_agent_stepdown');
-      expect(result.forcedModelId).toBe('gemini-2.0-flash-lite');
-    });
-
-    it('inherits Flash-Lite (already cheapest in hierarchy)', () => {
-      const parentId = 'test-parent-flashlite';
-      logWriter.append({
-        requestId: parentId,
-        timestamp: new Date().toISOString(),
-        promptHash: 'abc',
-        compositeScore: 0.1,
-        tier: 'simple',
-        selectedModel: 'gemini-2.0-flash-lite',
-        provider: 'google',
-        mode: 'eco',
-        override: 'none',
-        inputTokens: 50,
-        outputTokens: 100,
-        estimatedCostUsd: 0.001,
-        latencyMs: 200,
-      });
-
-      const result = detectOverrides(
-        [{ role: 'user', content: 'sub task' }],
-        undefined,
-        parentId,
-        logReader,
-      );
       expect(result.kind).toBe('sub_agent_inherit');
-      expect(result.forcedModelId).toBe('gemini-2.0-flash-lite');
+      expect(result.forcedModelId).toBe('gemini-2.5-flash');
     });
   });
 
