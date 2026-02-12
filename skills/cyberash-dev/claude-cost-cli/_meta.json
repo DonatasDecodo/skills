@@ -1,0 +1,11 @@
+{
+  "owner": "cyberash-dev",
+  "slug": "claude-cost-cli",
+  "displayName": "Claude Cost Cli",
+  "latest": {
+    "version": "0.1.0",
+    "publishedAt": 1770838076783,
+    "commit": null
+  },
+  "history": []
+}
