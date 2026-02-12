@@ -112,6 +112,7 @@ def transcribe(audio_source, speaker_labels=True, api_key=None):
         "audio_url": audio_url,
         "speaker_labels": speaker_labels,
         "language_detection": True,
+        "speech_models": ["universal-2"],
     }
     
     response = api_request("transcript", method="POST", data=transcript_request, api_key=api_key)
