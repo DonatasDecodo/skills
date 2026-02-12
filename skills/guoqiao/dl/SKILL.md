@@ -2,7 +2,7 @@
 name: dl
 description: Download Video/Music from YouTube/Bilibili/X/etc.
 author: guoqiao
-metadata: {"openclaw":{"always":true,"emoji":"🦞","homepage":"https://clawhub.ai/guoqiao/dl","os":["darwin","linux","win32"],"requires":{"bins":["uv"]}}}
+metadata: {"openclaw":{"always":false,"emoji":"🦞","homepage":"https://clawhub.ai/guoqiao/dl","os":["darwin","linux","win32"],"requires":{"bins":["uv"]}}}
 triggers:
 - "/dl <url>"
 - "Download this video ..."
@@ -13,8 +13,8 @@ triggers:
 
 Smartly download media (Video/Music) from URLs (YouTube, Bilibili, X, etc.) to the appropriate local folders.
 
-- **Video:** Saves `mp4` to `~/Movies/` or `~/Videos/`.
-- **Music:** Saves `m4a` to `~/Music/`.
+- **Video:** Save into `~/Movies/` or `~/Videos/`.
+- **Music:** Save into `~/Music/`.
 - **Playlists:** Saves items into a subdirectory (e.g., `~/Music/<playlist_name>/`).
 
 Designed to work with a local Media Server (e.g., Universal Media Server, Jellyfin) for instant playback on TV/devices.
@@ -33,7 +33,7 @@ When the user provides a URL or asks to download media, **you MUST follow this e
      ```
 
 3. **Capture Path:**
-   - Read the script output. Look for the line: `Saved to: <filepath>`.
+   - Read the script output, a path will be printed to stdout at the end, points to either a single file or a folder contains the playlist items.
 
 4. **Upload (Telegram Only):**
    - If the user is on Telegram (check context or session) AND the file is audio (mp3/m4a):
@@ -46,13 +46,24 @@ When the user provides a URL or asks to download media, **you MUST follow this e
      }
      ```
 
-## Usage (Manual)
+## Usage
 
-Run the python script directly:
+Run `dl.py` as a uv script:
 ```bash
+# save into default dirs ~/Music or ~/Movies or ~/Videos
 uv run --script ${baseDir}/dl.py <url>
+
+# specify your own output dir
+uv run --script ${baseDir}/dl.py <url> -o <out_dir>
 ```
-The script auto-detects Video vs Music and Single vs Playlist.
+The script will print output path, either a file or a folder.
+
+A optional cookies file could be provided to make yt-dlp more reliable, with which ever of these detected first:
+
+- `${baseDir}/.cookies.txt`
+- `$DL_COOKIES_FILE`
+- `$COOKIES_FILE`
+- `~/.cookies.txt`
 
 ## Setup (User)
 
