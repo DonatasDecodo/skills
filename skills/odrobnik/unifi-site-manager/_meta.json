@@ -1,0 +1,11 @@
+{
+  "owner": "odrobnik",
+  "slug": "unifi-site-manager",
+  "displayName": "UniFi Site Manager",
+  "latest": {
+    "version": "1.0.3",
+    "publishedAt": 1770824805500,
+    "commit": null
+  },
+  "history": []
+}
