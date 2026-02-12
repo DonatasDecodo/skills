@@ -1,5 +1,5 @@
 const { program } = require('commander');
-const { fetchWithAuth, getToken } = require('../common/feishu-client.js');
+const { fetchWithAuth, getToken } = require('../feishu-common/index.js');
 
 // --- Helper: Bitable API ---
 

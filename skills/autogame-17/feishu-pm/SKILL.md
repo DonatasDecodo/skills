@@ -8,6 +8,11 @@ tags: [feishu, bitable, pm, project, task]
 
 Manage tasks and project records in Feishu Bitables directly from the CLI.
 
+## Prerequisites
+
+- Install `feishu-common` first.
+- This skill depends on `../feishu-common/index.js` for token and API auth.
+
 ## Usage
 
 ### List Tasks
