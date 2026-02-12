@@ -1,6 +1,6 @@
 ---
 name: Create a Self-Selling Website
-description: Create AI-First Website (with Gnrative Engine Optimization) and marketing rules to convert visitors into leads
+description: Create AI-First Website with GEO (Generative Engine Optimization) and marketing rules to convert visitors into leads
 homepage: https://evoweb.ai/?utm_source=claw&utm_medium=skill&utm_campaign=selfselling&utm_content=v1.0
 metadata: {"clawdbot":{"emoji":"🌐","requires":{"bins":[],"env":["EVOWEB_API_KEY"]}}}
 ---
@@ -15,11 +15,11 @@ EvoWeb creates AI-first web pages that attract traffic via ChatGPT, Gemini, and 
 
 **Perfect for:** Businesses that want to be discovered by AI assistants and convert AI-driven traffic into paying clients
 
-**API Base URL:** `https://api.web.oto.dev/openapi/api/v1`
+**API Base URL:** `https://api.evoweb.ai/openapi/api/v1`
 
 ## Authentication
 
-Get your API key at https://hub.oto.dev/app/register?utm_source=claw&utm_medium=skill&utm_campaign=selfselling&utm_content=v1.0
+Get your API key at https://evoweb.ai/?utm_source=claw&utm_medium=skill&utm_campaign=selfselling&utm_content=v1.0
 
 **Important:** After registration, user MUST confirm the email address (this is required). The service won't work until email confirmation is complete.
  
@@ -332,7 +332,7 @@ Enhanced prompt:
 
 ## Support & Resources
 
-- **Get API Key:** https://hub.oto.dev/app/register?utm_source=claw&utm_medium=skill&utm_campaign=selfselling&utm_content=v1.0
+- **Get API Key:** https://evoweb.ai/?utm_source=claw&utm_medium=skill&utm_campaign=selfselling&utm_content=v1.0
 - **API Issues:** Contact EvoWeb support
 - **Account/Billing:** Visit https://evoweb.ai/
 
