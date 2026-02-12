@@ -1,13 +1,18 @@
 {
   "owner": "mvanhorn",
   "slug": "manus",
-  "displayName": "Clawdbot Skill Manus",
+  "displayName": "OpenClaw Manus",
   "latest": {
-    "version": "1.0.6",
-    "publishedAt": 1770779842202,
-    "commit": "https://github.com/openclaw/skills/commit/a7c300451e7f0343aa67a83891d52dc013677c57"
+    "version": "1.0.7",
+    "publishedAt": 1770827743736,
+    "commit": null
   },
   "history": [
+    {
+      "version": "1.0.6",
+      "publishedAt": 1770779842202,
+      "commit": "https://github.com/openclaw/skills/commit/a7c300451e7f0343aa67a83891d52dc013677c57"
+    },
     {
       "version": "1.1.0",
       "publishedAt": 1769051834715,
