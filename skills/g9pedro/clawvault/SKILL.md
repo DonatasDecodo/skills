@@ -1,11 +1,11 @@
 ---
 name: clawvault
-version: 1.11.3
+version: 1.11.6
 description: Agent memory system with checkpoint/recover, structured storage, observational memory, and session transcript repair. Integrates with OpenClaw's qmd memory backend for BM25+vector+reranker search. Use when: storing/searching memories, preventing context death, repairing broken sessions. Don't use when: general file I/O.
 author: Versatly
 repository: https://github.com/Versatly/clawvault
 homepage: https://clawvault.dev
-metadata: {"openclaw":{"emoji":"🐘","requires":{"bins":["clawvault"]},"env":{"CLAWVAULT_PATH":{"required":false,"description":"Vault directory path (auto-discovered if not set)"},"GEMINI_API_KEY":{"required":false,"description":"Only used by observe --compress for LLM compression. No other command uses this."}},"hooks":{"clawvault":{"events":["gateway:startup","command:new"],"capabilities":["executes clawvault CLI via child_process","reads vault state files","injects recovery alerts into session on context death","runs clawvault checkpoint before /new","runs clawvault observe --compress on session transcript (if GEMINI_API_KEY set)"],"does_not":["modify session transcripts (only the repair-session CLI command does that, never the hook)","make network calls (the hook itself makes zero network calls; observe --compress may call Gemini API)","access files outside the vault directory and session transcript path"]}},"install":[{"id":"node","kind":"node","package":"clawvault","bins":["clawvault"],"label":"Install ClawVault CLI (npm)"}]}}
+metadata: {"openclaw":{"emoji":"🐘","requires":{"bins":["clawvault"],"env":["CLAWVAULT_PATH","GEMINI_API_KEY"]},"install":[{"id":"node","kind":"node","package":"clawvault","bins":["clawvault"],"label":"Install ClawVault CLI (npm)"}]}}
 ---
 
 # ClawVault 🐘
@@ -296,8 +296,17 @@ The default `qmd query` pipeline uses BM25 keyword matching, vector embeddings, 
 
 The neural reranker requires ~8GB+ RAM. On constrained machines (e.g., small VPS, WSL2 with limited memory), `qmd query` may OOM. You can set `qmd.command` in your OpenClaw config to a wrapper script that routes to `qmd vsearch` (vectors only, no reranker) instead. This is a host-specific workaround, not the recommended default.
 
+## Provenance & Integrity
+
+This skill relies on the `clawvault` npm package. To verify:
+- **npm:** https://www.npmjs.com/package/clawvault (published by `versatly`)
+- **Source:** https://github.com/Versatly/clawvault (MIT license, full source available)
+- **Verify:** `npm info clawvault` shows publisher, version history, and tarball checksums
+- The npm package and this skill are maintained by the same team (Versatly)
+
 ## Links
 
+- Website: https://clawvault.dev
 - npm: https://www.npmjs.com/package/clawvault
 - GitHub: https://github.com/Versatly/clawvault
 - Issues: https://github.com/Versatly/clawvault/issues
