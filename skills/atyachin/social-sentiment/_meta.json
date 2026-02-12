@@ -1,0 +1,11 @@
+{
+  "owner": "atyachin",
+  "slug": "social-sentiment",
+  "displayName": "Sentiment Analysis — Brand Monitoring across Twitter, Reddit & Instagram",
+  "latest": {
+    "version": "1.2.0",
+    "publishedAt": 1770848752732,
+    "commit": null
+  },
+  "history": []
+}
