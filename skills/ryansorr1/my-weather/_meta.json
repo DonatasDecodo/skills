@@ -1,0 +1,11 @@
+{
+  "owner": "ryansorr1",
+  "slug": "my-weather",
+  "displayName": "My Weather",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1770837888043,
+    "commit": null
+  },
+  "history": []
+}
