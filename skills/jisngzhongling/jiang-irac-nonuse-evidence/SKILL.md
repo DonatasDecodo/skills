@@ -1,4 +1,7 @@
 name: jiang-nonuse
+slug: jiang-irac-nonuse-evidence
+display_name: 蒋道理｜撤三证据链与风险审核引擎（SJ-IRAC）
+version: 3.0.1
 description: CNIPA撤三（连续三年不使用）双轨证据引擎：答辩证据链构建 + 质证审计（SJ-6 + IRAC + 风险A–E）。
 homepage: https://github.com/jiangzhongling/jiang-nonuse
 metadata:
@@ -16,7 +19,7 @@ metadata:
 
 # SJ-IRAC Non-Use Engine（撤三证据推理系统）
 
-Professional Release v2.0.0  
+Professional Release v2.0.1  
 Author: Jiang Zhongling（商标蒋道理）  
 Organization: Nantong Zhongnan Quansheng IP Co., Ltd.  
 Last Updated: 2026-02-04  
