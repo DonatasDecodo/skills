@@ -1,0 +1,3 @@
+[submodule "skills/decodo"]
+	path = skills/decodo
+	url = https://github.com/Decodo/decodo-openclaw-skill
