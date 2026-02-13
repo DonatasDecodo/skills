@@ -186,6 +186,7 @@ If omitted, the gateway uses the default (oldest) active connection for that app
 | Box | `box` | `api.box.com` |
 | Brevo | `brevo` | `api.brevo.com` |
 | Calendly | `calendly` | `api.calendly.com` |
+| Cal.com | `cal-com` | `api.cal.com` |
 | CallRail | `callrail` | `api.callrail.com` |
 | Chargebee | `chargebee` | `{subdomain}.chargebee.com` |
 | ClickFunnels | `clickfunnels` | `{subdomain}.myclickfunnels.com` |
@@ -237,10 +238,13 @@ If omitted, the gateway uses the default (oldest) active connection for that app
 | Microsoft Excel | `microsoft-excel` | `graph.microsoft.com` |
 | Microsoft To Do | `microsoft-to-do` | `graph.microsoft.com` |
 | Monday.com | `monday` | `api.monday.com` |
+| Netlify | `netlify` | `api.netlify.com` |
 | Notion | `notion` | `api.notion.com` |
 | OneDrive | `one-drive` | `graph.microsoft.com` |
 | Outlook | `outlook` | `graph.microsoft.com` |
+| PDF.co | `pdf-co` | `api.pdf.co` |
 | Pipedrive | `pipedrive` | `api.pipedrive.com` |
+| Podio | `podio` | `api.podio.com` |
 | QuickBooks | `quickbooks` | `quickbooks.api.intuit.com` |
 | Quo | `quo` | `api.openphone.com` |
 | Salesforce | `salesforce` | `{instance}.salesforce.com` |
@@ -283,6 +287,7 @@ See [references/](references/) for detailed routing guides per provider:
 - [Box](references/box.md) - Files, folders, collaborations, shared links
 - [Brevo](references/brevo.md) - Contacts, email campaigns, transactional emails, templates
 - [Calendly](references/calendly.md) - Event types, scheduled events, availability, webhooks
+- [Cal.com](references/cal-com.md) - Event types, bookings, schedules, availability slots, webhooks
 - [CallRail](references/callrail.md) - Calls, trackers, companies, tags, analytics
 - [Chargebee](references/chargebee.md) - Subscriptions, customers, invoices
 - [ClickFunnels](references/clickfunnels.md) - Contacts, products, orders, courses, webhooks
@@ -334,10 +339,13 @@ See [references/](references/) for detailed routing guides per provider:
 - [Microsoft Excel](references/microsoft-excel.md) - Workbooks, worksheets, ranges, tables, charts
 - [Microsoft To Do](references/microsoft-to-do.md) - Task lists, tasks, checklist items, linked resources
 - [Monday.com](references/monday.md) - Boards, items, columns, groups (GraphQL)
+- [Netlify](references/netlify.md) - Sites, deploys, builds, DNS, environment variables
 - [Notion](references/notion.md) - Pages, databases, blocks
 - [OneDrive](references/one-drive.md) - Files, folders, drives, sharing
 - [Outlook](references/outlook.md) - Mail, calendar, contacts
+- [PDF.co](references/pdf-co.md) - PDF conversion, merge, split, edit, text extraction, barcodes
 - [Pipedrive](references/pipedrive.md) - Deals, persons, organizations, activities
+- [Podio](references/podio.md) - Organizations, workspaces, apps, items, tasks, comments
 - [QuickBooks](references/quickbooks.md) - Customers, invoices, reports
 - [Quo](references/quo.md) - Calls, messages, contacts, conversations, webhooks
 - [Salesforce](references/salesforce.md) - SOQL, sObjects, CRUD
