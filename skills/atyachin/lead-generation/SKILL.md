@@ -43,6 +43,10 @@ tags:
 
 Discovers leads expressing problems your product solves, complaining about competitors, or actively seeking solutions across Twitter, Instagram, and Reddit.
 
+## Setup
+
+Run `xpoz-setup` skill. Verify: `mcporter call xpoz.checkAccessKeyStatus`
+
 ## 3-Phase Process
 
 ### Phase 1: Product Research (One-Time)
